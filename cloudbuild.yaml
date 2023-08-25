@@ -5,7 +5,7 @@ steps:
   args: [ 'build', '-t', 'us.gcr.io/$PROJECT_ID/html-repo/nginx-image', '.' ]
 # push docker image
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/html-repo/nginx-image'
+- 'us.gcr.io.pkg.dev/$PROJECT_ID/html-repo/nginx-image'
 ## [END cloudbuild_quickstart_build]
 options:
  logging: CLOUD_LOGGING_ONLY
