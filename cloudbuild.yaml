@@ -1,0 +1,11 @@
+# [START cloudbuild_quickstart_build]
+# build docker image
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us.gcr.io/$PROJECT_ID/html-repo/nginx-image', '.' ]
+# push docker image
+images:
+- 'us.gcr.io/$PROJECT_ID/html-repo/nginx-image'
+## [END cloudbuild_quickstart_build]
+options:
+ logging: CLOUD_LOGGING_ONLY
