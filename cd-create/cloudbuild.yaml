@@ -21,7 +21,38 @@ steps:
   entrypoint: 'bash'
   args: ['-c','gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
   
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: create-target-pool
+  args:
+    - compute
+    - target-pools
+    - create
+    - my-target-pool
+    - --region=us-central1
+    - --http-health-check=mig-http
+    - --session-affinity=NONE
 
 
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: add-instances-to-target-pool
+  args:
+    - compute
+    - instance-groups
+    - managed
+    - set-target-pools
+    - cloudbuild-mig	
+    - --target-pools=my-target-pool
+    - --zone=us-central1-a
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: create-forwarding-rule
+  args:
+    - compute
+    - forwarding-rules
+    - create
+    - my-forwarding-rule
+    - --region=us-central1
+    - --target-pool=my-target-pool
+    - --ports=80
 options:
  logging: CLOUD_LOGGING_ONLY
