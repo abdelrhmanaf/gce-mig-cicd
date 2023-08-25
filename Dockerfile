@@ -11,4 +11,6 @@ COPY ./index.html /usr/share/nginx/www/
 
 RUN chmod -R a+r /usr/share/nginx/www
 
+EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
