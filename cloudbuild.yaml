@@ -9,3 +9,4 @@ images:
 ## [END cloudbuild_quickstart_build]
 options:
  logging: CLOUD_LOGGING_ONLY
+ 
