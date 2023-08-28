@@ -41,7 +41,7 @@ steps:
       - start-update
       - cloudbuild-mig
       - --type=proactive
-      - --template cloud-build-instance-template-$ENV-$SHORT_SHA-V2
+      - --template cloud-build-instance-template-$_ENV-$SHORT_SHA-V2
       - --region us-central1
       - --size 1
 options:
