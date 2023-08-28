@@ -3,7 +3,6 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   id: create-instance-template
   args:
-    - beta
     - compute
     - instance-templates
     - create-with-container
@@ -14,7 +13,7 @@ steps:
     - --region=us-central1
     - --subnet=new-default	
     - --tags=allow-hc-and-proxy,allow-ssh
-    - --container-image
+    - --container-image=
     - us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest
 
  # # create the managed instance group  
