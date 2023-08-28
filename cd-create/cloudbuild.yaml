@@ -6,7 +6,7 @@ steps:
     - compute
     - instance-templates
     - create-with-container
-    - cloud-build-instance-template-$_ENV-$SHORT_SHA
+    - cloud-build-instance-template-$_ENV-$SHORT_SHA-V2
     - --custom-cpu=1
     - --custom-memory=2GB
     - --boot-disk-size=20GB
@@ -19,9 +19,7 @@ steps:
  # # create the managed instance group
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['-c','gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
-  
-
+  args: ['-c','gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA-V2  --size 1 --region us-central1']  
 
 options:
  logging: CLOUD_LOGGING_ONLY
