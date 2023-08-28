@@ -1,4 +1,4 @@
- # Create the new instance template
+# Create the new instance template
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   id: create-instance-template
@@ -6,16 +6,16 @@ steps:
     - compute
     - instance-templates
     - create-with-container
-    - cloud-build-instance-template-v2-$_ENV-$SHORT_SHA
+    - cloud-build-instance-template-v3-$_ENV-$SHORT_SHA
     - --custom-cpu=1
     - --custom-memory=2GB
     - --boot-disk-size=20GB
     - --region=us-central1
-    - --subnet=new-default
+    - --subnet=new-default	
     - --tags=allow-hc-and-proxy,allow-ssh
     - --container-image
     - us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest
-    
+
  # Update the managed instance group
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
