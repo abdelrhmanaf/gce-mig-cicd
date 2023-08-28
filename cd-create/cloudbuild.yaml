@@ -3,7 +3,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   id: create-instance-template
   args:
-    - sleep 60
+    - sleep 60 &&
     - compute
     - instance-templates
     - create-with-container
