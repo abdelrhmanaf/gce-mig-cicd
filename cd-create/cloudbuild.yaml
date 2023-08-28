@@ -1,8 +1,9 @@
 # Create the new instance template
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'gcr.io/cloud-builders/gcloud'
   id: create-instance-template
   args:
+    - beta
     - compute
     - instance-templates
     - create-with-container
@@ -16,10 +17,32 @@ steps:
     - --container-image
     - us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest
 
- # # create the managed instance group
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args: ['-c','gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA-V2  --size 1 --region us-central1']  
-
+ # # create the managed instance group  
+- name: gcr.io/cloud-builders/gcloud
+  id: wait-until-stable
+  args:
+      - beta
+      - compute
+      - instance-groups
+      - managed
+      - wait-until
+      - cloudbuild-mig
+      - --stable
+      - --region us-central1
+#Updating the MIG with new instance template
+- name: gcr.io/cloud-builders/gcloud
+  id: updating-mig
+  args:
+      - beta
+      - compute
+      - instance-groups
+      - managed
+      - rolling-action
+      - start-update
+      - cloudbuild-mig
+      - --type=proactive
+      - --template cloud-build-instance-template-$ENV-$SHORT_SHA-V2
+      - --region us-central1
+      - --size 1
 options:
  logging: CLOUD_LOGGING_ONLY
