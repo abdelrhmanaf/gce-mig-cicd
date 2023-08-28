@@ -3,7 +3,6 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   id: create-instance-template
   args:
-    - sleep 120 &&
     - compute
     - instance-templates
     - create-with-container
@@ -20,7 +19,7 @@ steps:
  # # create the managed instance group
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['-c',' sleep 20 && gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
+  args: ['-c','gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
   
 
 
