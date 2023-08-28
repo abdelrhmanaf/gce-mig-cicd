@@ -6,7 +6,7 @@ steps:
     - compute
     - instance-templates
     - create-with-container
-    - cloud-build-instance-template-v3-$_ENV-$SHORT_SHA
+    - cloud-build-instance-template-$_ENV-$SHORT_SHA
     - --custom-cpu=1
     - --custom-memory=2GB
     - --boot-disk-size=20GB
@@ -14,12 +14,14 @@ steps:
     - --subnet=new-default	
     - --tags=allow-hc-and-proxy,allow-ssh
     - --container-image
-    - us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest
+    - us-central1-docker.pkg.dev/searce-playground-v1/python-repo/python-image:latest
 
  # # create the managed instance group
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['-c',' sleep  60 && gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
+  args: ['-c',' sleep 80 && gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
+  
+
 
 options:
  logging: CLOUD_LOGGING_ONLY
