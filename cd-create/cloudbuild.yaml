@@ -15,12 +15,12 @@ steps:
     - --subnet=new-default	
     - --tags=allow-hc-and-proxy,allow-ssh
     - --container-image
-    - us-central1-docker.pkg.dev/searce-playground-v1/python-repo/python-image:latest
+    - us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest
 
  # # create the managed instance group
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['-c',' sleep 80 && gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
+  args: ['-c',' sleep 20 && gcloud compute instance-groups managed create cloudbuild-mig --template cloud-build-instance-template-$_ENV-$SHORT_SHA  --size 1 --region us-central1']  
   
 
 
