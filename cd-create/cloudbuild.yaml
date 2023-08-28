@@ -6,7 +6,7 @@ steps:
     - compute
     - instance-templates
     - create-with-container
-    - cloud-build-instance-template-$_ENV-$SHORT_SHA
+    - cloud-build-instance-template-v2-$_ENV-$SHORT_SHA
     - --custom-cpu=1
     - --custom-memory=2GB
     - --boot-disk-size=20GB
