@@ -3,7 +3,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   id: create-instance-template
   entrypoint: 'bash'
-  args: ['-c','sleep 40 && gcloud compute instance-templates create-with-container cloud-build-instance-template-v1-$_ENV-$SHORT_SHA --custom-cpu=1 --custom-memory=2GB --boot-disk-size=20GB --region=us-central1 --subnet=new-default --tags=allow-hc-and-proxy,allow-ssh --machine-type=g1-small --no-address --container-image=us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest ']
+  args: ['-c','sleep 40 && gcloud compute instance-templates create-with-container cloud-build-instance-template-v1-$_ENV-$SHORT_SHA --boot-disk-size=20GB --region=us-central1 --subnet=new-default --tags=allow-hc-and-proxy,allow-ssh --machine-type=g1-small --no-address --container-image=us.gcr.io/moonlit-sphinx-394612/html-repo/nginx-image:latest ']
     
  # Update the managed instance group
 
