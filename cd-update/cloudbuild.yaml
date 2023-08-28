@@ -19,7 +19,7 @@ steps:
  # Update the managed instance group
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['-c','gcloud compute instance-groups managed rolling-action start-update cloudbuild-mig --version=template=cloud-build-instance-template-v2-$_ENV-$SHORT_SHA --region=us-central1 --max-unavailable=0'] 
+  args: ['-c','sleep 60 && gcloud compute instance-groups managed rolling-action start-update cloudbuild-mig --version=template=cloud-build-instance-template-v2-$_ENV-$SHORT_SHA --region=us-central1 --max-unavailable=0'] 
 
 options:
  logging: CLOUD_LOGGING_ONLY
